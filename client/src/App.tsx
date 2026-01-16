@@ -1,22 +1,22 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import ROUTES from "./routes";
+import { Toaster } from "react-hot-toast";
 
 const App: React.FC = () => {
   return (
     <>
+      <Toaster position="top-center" />
       <Routes>
-        <Route>
-          {ROUTES.filter((route) => !route.isProtectedRoute).map(
-            (route, index) => (
-              <Route
-                key={index}
-                path={route.route}
-                element={<route.component />}
-              />
-            )
-          )}
-        </Route>
+        {ROUTES.filter((route) => !route.isProtectedRoute).map(
+          (route, index) => (
+            <Route
+              key={index}
+              path={route.route}
+              element={<route.component />}
+            />
+          )
+        )}
       </Routes>
     </>
   );
