@@ -1,6 +1,6 @@
 import React from "react";
-import Navigation from "../components/Navigation";
 import toast from "react-hot-toast";
+import { Loader2Icon } from "lucide-react";
 
 const Home: React.FC = () => {
   const [input, setInput] = React.useState<string>("");
@@ -24,16 +24,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Navigation />
-
       <section className="flex flex-col items-center text-white text-sm pb-20 px-4 font-poppins">
-        {/* BACKGROUND IMAGE */}
-        <img
-          src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/refs/heads/main/assets/hero/bg-gradient-2.png"
-          className="absolute inset-0 -z-10 size-full opacity"
-          alt=""
-        />
-
         <a
           href="#"
           className="flex items-center gap-2 border border-slate-700 rounded-full p-1 pr-3 text-sm mt-20"
@@ -62,18 +53,18 @@ const Home: React.FC = () => {
           </p>
         </a>
 
-        <h1 className="text-center text-[40px] leading-[48px] md:text-6xl md:leading-[70px] mt-4 font-semibold max-w-3xl">
+        <h1 className="text-center text-[40px] leading-12 md:text-6xl md:leading-17.5 mt-8 font-semibold max-w-3xl">
           From idea to live website. Powered by AI.
         </h1>
 
-        <p className="text-center text-base max-w-md mt-2">
+        <p className="text-center text-base max-w-md mt-6">
           Create, customize, and present faster than ever with AI-powered
           intelligent design.
         </p>
 
         <form
           onSubmit={onSubmitHandler}
-          className="bg-white/10 max-w-2xl w-full rounded-xl p-4 mt-10 border border-indigo-600/70 focus-within:ring-2 ring-indigo-500 transition-all"
+          className="bg-white/10 max-w-2xl w-full rounded-xl p-4 mt-16 border border-indigo-600/70 focus-within:ring-2 ring-indigo-500 transition-all"
         >
           <textarea
             onChange={(e) => setInput(e.target.value)}
@@ -82,30 +73,14 @@ const Home: React.FC = () => {
             placeholder="Describe your presentation in details"
             required
           />
-          <button className="ml-auto flex items-center gap-2 bg-gradient-to-r from-[#CB52D4] to-indigo-600 rounded-md px-4 py-2">
-            {loading ? (
-              <svg
-                className="animate-spin h-5 w-5 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-            ) : (
+          <button className="ml-auto flex items-center gap-2 bg-indigo-600 rounded-md px-4 py-2">
+            {!loading ? (
               "Create with AI"
+            ) : (
+              <>
+                Creating{" "}
+                <Loader2Icon className="animate-spin size-4 text-white" />
+              </>
             )}
           </button>
         </form>
