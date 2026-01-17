@@ -16,7 +16,7 @@ const MyProjects: React.FC = () => {
 
     setTimeout(() => {
       setLoading(false);
-    }, 1500);
+    }, 1000);
   };
 
   const deleteProject = async (projectId: string) => {
@@ -51,7 +51,7 @@ const MyProjects: React.FC = () => {
               {projects.map((project: Project) => (
                 <div
                   key={project.id}
-                  className="relative group w-72 max-sm:mx-auto cursor-pointer bg-gray-900/60 border border-gray-700 rounded-lg overflow-hidden shadow-md group hover:shadow-indigo-700/30 hover:border-indigo-800/80 transition-all duration-300"
+                  className="w-72 max-sm:mx-auto cursor-pointer bg-gray-900/60 border border-gray-700 rounded-lg overflow-hidden shadow-md group hover:shadow-indigo-700/30 hover:border-indigo-800/80 transition-all duration-300"
                   onClick={() => navigate(`/projects/${project.id}`)}
                 >
                   {/* Project Preview */}
