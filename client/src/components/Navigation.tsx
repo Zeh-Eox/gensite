@@ -98,13 +98,6 @@ const Navigation: React.FC = () => {
           </button>
         </div>
       )}
-
-      {/* BACKGROUND IMAGE */}
-      <img
-        src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/refs/heads/main/assets/hero/bg-gradient.png"
-        className="absolute inset-0 -z-10 size-full opacity"
-        alt="Background Gradient"
-      />
     </>
   );
 };
