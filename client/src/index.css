@@ -5,6 +5,13 @@
   font-family: 'Outfit', sans-serif;
 }
 
+body {
+  background-image: url('/bg-gradient.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 @layer base {
   button {
     @apply cursor-pointer;
