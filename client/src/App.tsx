@@ -1,15 +1,23 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import ROUTES from "./routes";
 import { Toaster } from "react-hot-toast";
 import Navigation from "./components/Navigation";
 
 const App: React.FC = () => {
+  const { pathname } = useLocation();
+
+  const HIDE_NAVBAR_PATHS = ["/projects/", "/view/", "/preview/"];
+
+  const hideNavbar = HIDE_NAVBAR_PATHS.some(
+    (path) => pathname.startsWith(path) && pathname !== "/projects",
+  );
+
   return (
     <>
       <Toaster position="bottom-right" />
 
-      <Navigation />
+      {!hideNavbar && <Navigation />}
 
       <Routes>
         {ROUTES.filter((route) => !route.isProtectedRoute).map(
@@ -19,7 +27,7 @@ const App: React.FC = () => {
               path={route.route}
               element={<route.component />}
             />
-          )
+          ),
         )}
       </Routes>
     </>
