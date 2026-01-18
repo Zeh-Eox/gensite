@@ -18,7 +18,7 @@ const ROUTES: RouteItem[] = [
   },
   {
     title: "Projects",
-    route: "/projects/:projectsId",
+    route: "/projects/:projectId",
     component: Projects,
     isProtectedRoute: false
   },
