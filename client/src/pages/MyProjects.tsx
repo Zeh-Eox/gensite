@@ -51,9 +51,21 @@ const MyProjects: React.FC = () => {
               {projects.map((project: Project) => (
                 <div
                   key={project.id}
-                  className="w-72 max-sm:mx-auto cursor-pointer bg-gray-900/60 border border-gray-700 rounded-lg overflow-hidden shadow-md group hover:shadow-indigo-700/30 hover:border-indigo-800/80 transition-all duration-300"
+                  className="relative w-72 max-sm:mx-auto cursor-pointer bg-gray-900/60 border border-gray-700 rounded-lg overflow-hidden shadow-md group hover:shadow-indigo-700/30 hover:border-indigo-800/80 transition-all duration-300"
                   onClick={() => navigate(`/projects/${project.id}`)}
                 >
+                  {/* Delete Icon */}
+                  <div
+                    onClick={(e: React.FormEvent<HTMLDivElement>) =>
+                      e.stopPropagation()
+                    }
+                  >
+                    <TrashIcon
+                      onClick={() => deleteProject(project.id)}
+                      className="absolute top-3 right-3 scale-0 group-hover:scale-100 bg-white p-1.5 size-7 rounded text-red-500 text-xl cursor-pointer transition-all z-10"
+                    />
+                  </div>
+
                   {/* Project Preview */}
                   <div className="relative w-full h-40 bg-gray-900 overflow-hidden border-b border-gray-800">
                     {project.current_code ? (
@@ -108,17 +120,6 @@ const MyProjects: React.FC = () => {
                         </button>
                       </div>
                     </div>
-                  </div>
-
-                  <div
-                    onClick={(e: React.FormEvent<HTMLDivElement>) =>
-                      e.stopPropagation()
-                    }
-                  >
-                    <TrashIcon
-                      onClick={() => deleteProject(project.id)}
-                      className="absolute top-3 right-3 scale-0 group-hover:scale-100 bg-white p-1.5 size-7 rounded text-red-500 text-xl cursor-pointer transition-all"
-                    />
                   </div>
                 </div>
               ))}
