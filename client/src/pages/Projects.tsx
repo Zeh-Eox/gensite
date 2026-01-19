@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import type { Project } from "../types";
 import {
+  ArrowLeft,
   Download,
   EyeIcon,
   EyeOffIcon,
@@ -176,6 +177,12 @@ const Projects: React.FC = () => {
 
         {/* right */}
         <div className="flex items-center justify-end gap-3 flex-1 text-xs sm:text-sm">
+          <Link
+            to={"/projects"}
+            className="flex items-center gap-2 px-4 py-1 rounded sm:rounded-sm border border-purple-700 hover:bg-purple-700 transition-colors"
+          >
+            <ArrowLeft size={16} /> Go Back
+          </Link>
           <button
             disabled={isSaving}
             className="max-sm:hidden bg-gray-800 hover:bg-gray-700 text-white px-3.5 py-1 flex items-center gap-2 rounded sm:rounded-sm transition-colors border border-gray-700"
@@ -190,7 +197,7 @@ const Projects: React.FC = () => {
           </button>
 
           <Link
-            className="flex items-center gap-2 px-4 py-1 rounded sm:rounded-sm border border-gray-700 hover:border-gray-700 transition-colors"
+            className="flex items-center gap-2 px-4 py-1 rounded sm:rounded-sm border border-gray-700 hover:bg-gray-700 transition-colors"
             to={`/preview/${projectId}`}
             target="_blank"
           >
