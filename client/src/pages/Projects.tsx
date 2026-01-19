@@ -21,21 +21,20 @@ import {
 } from "../constants/assets";
 import toast from "react-hot-toast";
 import Sidebar from "../components/Sidebar";
+import ProjectPreview, { type ProjectPreviewRef } from "../components/ProjectPreview";
 
 type deviceType = "desktop" | "tablet" | "phone";
 
 const Projects: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
   const navigate = useNavigate();
-
   const [project, setProject] = React.useState<Project | null>(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
-
   const [isGenerating, setIsGenerating] = React.useState<boolean>(true);
   const [device, setDevice] = React.useState<deviceType>("desktop");
-
   const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
   const [isSaving, setIsSaving] = React.useState<boolean>(false);
+  const projectPreviewRef = React.useRef<ProjectPreviewRef>(null);
 
   const fetchProject = async () => {
     const projectResponse = dummyProjects.find((proj) => proj.id === projectId);
@@ -207,7 +206,9 @@ const Projects: React.FC = () => {
           isGenerating={isGenerating}
           setIsGenerating={setIsGenerating}
         />
-        <div className="flex-1 p-2 pl-10">Project Preview</div>
+        <div className="flex-1 p-2 pl-10">
+          <ProjectPreview ref={projectPreviewRef} project={project} isGenerating={isGenerating} device={device} />
+        </div>
       </div>
     </div>
   ) : (
