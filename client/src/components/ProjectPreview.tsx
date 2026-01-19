@@ -26,7 +26,29 @@ const ProjectPreview: React.FC<ProjectPreviewProps> = React.forwardRef<
   ) => {
     React.useImperativeHandle(ref, () => ({
       getCode: () => {
-        return project.current_code;
+        const doc = iframeRef.current?.contentDocument;
+
+        if (!doc) return undefined;
+
+        // Remove selection classes / attributes / outline from all elements
+        doc
+          .querySelectorAll(".ai-selected-element,[data-ai-selected]")
+          .forEach((element) => {
+            element.classList.remove("ai-selected-element");
+            element.removeAttribute("data-ai-selected");
+            (element as HTMLElement).style.outline = "";
+          });
+
+        // Remove injected style + script from the document
+        const previewStyle = doc.getElementById("ai-preview-style");
+        if (previewStyle) previewStyle.remove();
+
+        const previewScript = doc.getElementById("ai-preview-script");
+        if (previewScript) previewScript.remove();
+
+        // Serialize clean HTML
+        const html = doc.documentElement.outerHTML;
+        return html;
       },
     }));
 
