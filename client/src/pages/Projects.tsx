@@ -21,7 +21,9 @@ import {
 } from "../constants/assets";
 import toast from "react-hot-toast";
 import Sidebar from "../components/Sidebar";
-import ProjectPreview, { type ProjectPreviewRef } from "../components/ProjectPreview";
+import ProjectPreview, {
+  type ProjectPreviewRef,
+} from "../components/ProjectPreview";
 
 type deviceType = "desktop" | "tablet" | "phone";
 
@@ -67,12 +69,32 @@ const Projects: React.FC = () => {
   };
 
   const downloadCode = () => {
-    toast.loading("Downloading project...");
+    if (isGenerating) return;
 
-    setTimeout(() => {
-      toast.dismiss();
-      toast.success("Project downloaded successfully!");
-    }, 2000);
+    const code = projectPreviewRef.current?.getCode() || project?.current_code;
+
+    if (!code) {
+      toast.error("No code to download");
+      return;
+    }
+
+    const toastId = toast.loading("Downloading project...");
+
+    const blob = new Blob([code], { type: "text/html;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "index.html";
+
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    toast.dismiss(toastId);
+    toast.success("Project downloaded successfully");
   };
 
   const saveProject = async () => {
@@ -207,7 +229,12 @@ const Projects: React.FC = () => {
           setIsGenerating={setIsGenerating}
         />
         <div className="flex-1 p-2 pl-10">
-          <ProjectPreview ref={projectPreviewRef} project={project} isGenerating={isGenerating} device={device} />
+          <ProjectPreview
+            ref={projectPreviewRef}
+            project={project}
+            isGenerating={isGenerating}
+            device={device}
+          />
         </div>
       </div>
     </div>
