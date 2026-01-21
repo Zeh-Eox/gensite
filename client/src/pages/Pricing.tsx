@@ -1,8 +1,7 @@
 import React from "react";
-import type { Plan } from "../types/plans";
-import { appPlans } from "../constants/assets";
-import toast from "react-hot-toast";
-import Footer from "../components/Footer";
+import type { Plan } from "@/types/plans";
+import { appPlans } from "@/constants/assets";
+import Footer from "@/components/Footer";
 
 const Pricing: React.FC = () => {
   const [plans, setPlans] = React.useState<Plan[]>([]);
@@ -13,7 +12,6 @@ const Pricing: React.FC = () => {
 
   const handlePurchase = async (planId: string) => {
     console.log(`Purchasing plan with ID: ${planId}`);
-    toast.error("Purchase functionality is not implemented yet.");
   };
 
   return (

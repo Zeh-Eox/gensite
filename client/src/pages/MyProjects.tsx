@@ -1,10 +1,9 @@
 import React from "react";
-import type { Project } from "../types";
+import type { Project } from "@/types";
 import { Loader2Icon, PlusIcon, TrashIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { dummyProjects } from "../constants/assets";
-import toast from "react-hot-toast";
-import Footer from "../components/Footer";
+import { dummyProjects } from "@/constants/assets";
+import Footer from "@/components/Footer";
 
 const MyProjects: React.FC = () => {
   const [loading, setLoading] = React.useState<boolean>(true);
@@ -21,7 +20,6 @@ const MyProjects: React.FC = () => {
 
   const deleteProject = async (projectId: string) => {
     console.log("Deleting project with ID:", projectId);
-    toast.success("Project deleted successfully!");
   };
 
   React.useEffect(() => {

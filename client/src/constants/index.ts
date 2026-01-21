@@ -1,5 +1,5 @@
 import { CircleIcon, ScanLineIcon, SquareIcon, TriangleIcon } from "lucide-react";
-import type { ScreenResolutions, Steps } from "../types/assets";
+import type { ScreenResolutions, Steps } from "@/types/assets";
 
 export const screenResolutions: ScreenResolutions = {
   phone: "w-[412px]",

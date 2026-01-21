@@ -1,9 +1,9 @@
 import React from "react";
-import type { Project } from "../types";
+import type { Project } from "@/types";
 import { Loader2Icon } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { dummyProjects } from "../constants/assets";
-import Footer from "../components/Footer";
+import { dummyProjects } from "@/constants/assets";
+import Footer from "@/components/Footer";
 
 const Community: React.FC = () => {
   const [loading, setLoading] = React.useState<boolean>(true);

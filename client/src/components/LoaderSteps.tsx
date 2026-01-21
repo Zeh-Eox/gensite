@@ -1,5 +1,5 @@
 import React from "react";
-import { STEP_DURATION, steps } from "../constants";
+import { STEP_DURATION, steps } from "@/constants";
 
 const LoaderSteps: React.FC = () => {
   const [current, setCurrent] = React.useState<number>(0);
