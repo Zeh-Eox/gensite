@@ -1,13 +1,14 @@
-import Home from "../pages/Home";
-import Projects from "../pages/Projects";
-import NotFound from "../pages/NotFound";
-import Community from "../pages/Community";
-import Preview from "../pages/Preview";
-import Pricing from "../pages/Pricing";
-import MyProjects from "../pages/MyProjects";
-import View from "../pages/View";
-
-import type { RouteItem } from "../types/routes";
+import Home from "@/pages/Home";
+import Projects from "@/pages/Projects";
+import NotFound from "@/pages/NotFound";
+import Community from "@/pages/Community";
+import Preview from "@/pages/Preview";
+import Pricing from "@/pages/Pricing";
+import MyProjects from "@/pages/MyProjects";
+import View from "@/pages/View";
+import type { RouteItem } from "@/types/routes";
+import AuthPage from "@/pages/auth/AuthPage";
+import Settings from "@/pages/Settings";
 
 const ROUTES: RouteItem[] = [
   {
@@ -62,6 +63,18 @@ const ROUTES: RouteItem[] = [
     title: "Not Found",
     route: "*",
     component: NotFound,
+    isProtectedRoute: false
+  },
+  {
+    title: "Settings",
+    route: "/account/settings",
+    component: Settings,
+    isProtectedRoute: false
+  },
+  {
+    title: "AuthPage",
+    route: "/auth/:pathname",
+    component: AuthPage,
     isProtectedRoute: false
   }
 ]

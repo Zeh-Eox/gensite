@@ -1,5 +1,4 @@
 import React from "react";
-import toast from "react-hot-toast";
 import { Loader2Icon } from "lucide-react";
 
 const Home: React.FC = () => {
@@ -10,7 +9,6 @@ const Home: React.FC = () => {
     e.preventDefault();
 
     if (input === "") {
-      toast.error("Please enter a description");
       return;
     }
     setLoading(true);
@@ -18,7 +16,6 @@ const Home: React.FC = () => {
     // Simulate API call
     setTimeout(() => {
       setLoading(false);
-      toast.success("Presentation created successfully!");
     }, 3000);
   };
 

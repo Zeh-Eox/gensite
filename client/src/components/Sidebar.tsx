@@ -8,7 +8,6 @@ import {
   UserIcon,
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import toast from "react-hot-toast";
 
 interface SidebarProps {
   isMenuOpen: boolean;
@@ -29,7 +28,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   const [input, setInput] = React.useState<string>("");
 
   const handleRollback = async (versionId: string) => {
-    toast.success(`Rolled back to version ${versionId}`);
+    console.log(versionId);
   };
 
   const handleRevisions = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -39,7 +38,6 @@ const Sidebar: React.FC<SidebarProps> = ({
     setTimeout(() => {
       setIsGenerating(false);
     }, 2000);
-    toast.success("Viewing revisions");
   };
 
   React.useEffect(() => {

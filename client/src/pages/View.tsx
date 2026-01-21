@@ -1,11 +1,11 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { dummyProjects } from "../constants/assets";
-import type { Project } from "../types";
+import { dummyProjects } from "@/constants/assets";
+import type { Project } from "@/types";
 import { Loader2Icon } from "lucide-react";
 import ProjectPreview, {
   type ProjectPreviewRef,
-} from "../components/ProjectPreview";
+} from "@/components/ProjectPreview";
 
 const View: React.FC = () => {
   const { projectId } = useParams();

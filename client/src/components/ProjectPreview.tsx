@@ -1,8 +1,8 @@
 import React from "react";
-import type { Project } from "../types";
-import { iframeScript } from "../constants/assets";
-import { screenResolutions } from "../constants";
-import EditorPanel from "./EditorPanel";
+import type { Project } from "@/types";
+import { iframeScript } from "@/constants/assets";
+import { screenResolutions } from "@/constants";
+import EditorPanel from "@/components/EditorPanel";
 
 export interface ProjectPreviewRef {
   getCode: () => string | undefined;

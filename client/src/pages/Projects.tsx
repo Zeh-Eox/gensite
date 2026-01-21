@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import type { Project } from "../types";
+import type { Project } from "@/types";
 import {
   ArrowLeft,
   Download,
@@ -19,12 +19,11 @@ import {
   dummyConversations,
   dummyProjects,
   dummyVersion,
-} from "../constants/assets";
-import toast from "react-hot-toast";
-import Sidebar from "../components/Sidebar";
+} from "@/constants/assets";
+import Sidebar from "@/components/Sidebar";
 import ProjectPreview, {
   type ProjectPreviewRef,
-} from "../components/ProjectPreview";
+} from "@/components/ProjectPreview";
 
 type deviceType = "desktop" | "tablet" | "phone";
 
@@ -63,10 +62,6 @@ const Projects: React.FC = () => {
     if (project) {
       setProject({ ...project, isPublished: !project.isPublished });
     }
-
-    toast.success(
-      `Project ${project?.isPublished ? "unpublished" : "published"} successfully!`,
-    );
   };
 
   const downloadCode = () => {
@@ -75,11 +70,8 @@ const Projects: React.FC = () => {
     const code = projectPreviewRef.current?.getCode() || project?.current_code;
 
     if (!code) {
-      toast.error("No code to download");
       return;
     }
-
-    const toastId = toast.loading("Downloading project...");
 
     const blob = new Blob([code], { type: "text/html;charset=utf-8" });
     const url = URL.createObjectURL(blob);
@@ -93,21 +85,13 @@ const Projects: React.FC = () => {
 
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
-
-    toast.dismiss(toastId);
-    toast.success("Project downloaded successfully");
   };
 
   const saveProject = async () => {
     setIsSaving(true);
 
-    toast.loading("Saving project...");
-
     setTimeout(() => {
       setIsSaving(false);
-
-      toast.dismiss();
-      toast.success("Project saved successfully!");
     }, 2000);
   };
 

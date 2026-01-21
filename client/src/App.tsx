@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import ROUTES from "./routes";
-import { Toaster } from "react-hot-toast";
-import Navigation from "./components/Navigation";
+import ROUTES from "@/routes";
+import Navigation from "@/components/Navigation";
+import { Toaster } from "sonner";
 
 const App: React.FC = () => {
   const { pathname } = useLocation();
@@ -15,7 +15,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Toaster position="bottom-right" />
+      <Toaster />
 
       {!hideNavbar && <Navigation />}
 

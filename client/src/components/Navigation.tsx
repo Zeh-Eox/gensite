@@ -1,17 +1,21 @@
 import React from "react";
-import { assets } from "../constants/assets";
+import { assets } from "@/constants/assets";
 import { Link, useNavigate } from "react-router-dom";
+import { authClient } from "@/lib/auth-client";
+import { UserButton } from "@daveyplate/better-auth-ui";
 
 const Navigation: React.FC = () => {
   const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
   const navigate = useNavigate();
 
+  const { data: session } = authClient.useSession();
+
   return (
     <>
       <nav className="z-50 flex items-center justify-between w-full py-4 px-4 md:px-16 lg:px-24 xl:px-32 backdrop-blur border-b text-white border-slate-800">
-        <Link to="/" className="flex gap-2">
-          <img src={assets.logo} alt="GenSite Logo" />
-          <h1 className="text-4xl font-bold hidden md:block">Gensite</h1>
+        <Link to="/" className="flex items-center gap-2 w-53">
+          <img src={assets.logo} className="w-12 h-12" alt="GenSite Logo" />
+          <h1 className="text-3xl font-bold hidden md:block">Gensite</h1>
         </Link>
 
         <div className="hidden md:flex items-center gap-8 transition duration-500">
@@ -30,12 +34,18 @@ const Navigation: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <button
-            onClick={() => navigate("/auth/signin")}
-            className="px-6 py-1.5 max-sm:text-sm bg-indigo-600 active:scale-95 hover:bg-indigo-700 transition rounded"
-          >
-            Get started
-          </button>
+          {!session?.user ? (
+            <button
+              onClick={() => navigate("/auth/sign-in")}
+              className="px-6 py-1.5 max-sm:text-sm bg-indigo-600 active:scale-95 hover:bg-indigo-700 transition rounded"
+            >
+              Get started
+            </button>
+          ) : (
+            <div className="w-[40.75]">
+              <UserButton />
+            </div>
+          )}
 
           <button
             id="open-menu"
