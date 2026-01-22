@@ -43,7 +43,7 @@ const Navigation: React.FC = () => {
             </button>
           ) : (
             <div className="w-[40.75]">
-              <UserButton />
+              <UserButton size={"sm"} />
             </div>
           )}
 
